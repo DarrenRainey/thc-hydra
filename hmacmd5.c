@@ -1,4 +1,3 @@
-
 /* 
    Unix SMB/CIFS implementation.
    HMAC MD5 code for use in NTLMv2
@@ -27,10 +26,8 @@
    Telephone: +1-617-542-5942
    Fax: +1-617-542-2652
    General email: info@fsf.org
-*/
-
-/* taken direct from rfc2104 implementation and modified for suitable use
- * for ntlmv2.
+   taken direct from rfc2104 implementation and modified for suitable use
+   for ntlmv2.
  */
 #ifdef LIBOPENSSL
 
@@ -76,7 +73,7 @@ void hmac_md5_init_rfc2104(const unsigned char *key, int32_t key_len, HMACMD5Con
 }
 
 /***********************************************************************
- the microsoft version of hmac_md5 initialisation.
+ The Microsoft version of hmac_md5 initialisation.
 ***********************************************************************/
 
 void hmac_md5_init_limK_to_64(const unsigned char *key, int32_t key_len, HMACMD5Context * ctx) {

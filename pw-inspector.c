@@ -156,7 +156,6 @@ int main(int argc, char *argv[]) {
         count++;
       }
     }
-    /* fprintf(stderr, "[DEBUG] i: %d  minlen: %d  maxlen: %d  len: %d\n", i, minlen, maxlen, strlen(buf)); */
   }
   fclose(in);
   fclose(out);

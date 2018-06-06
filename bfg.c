@@ -1,4 +1,3 @@
-
 /* code original by Jan Dlabal <dlabaljan@gmail.com>, partially rewritten by vh */
 
 #include <stdio.h>
@@ -27,14 +26,12 @@ static int32_t add_single_char(char ch, char flags, int32_t* crs_len) {
       printf("[ERROR] character %c defined in -x although the whole number range was already defined by '1', ignored\n", ch);
       return 0;
     }
-    //printf("[WARNING] adding character %c for -x, note that '1' will add all numbers from 0-9\n", ch);
   }
   if (tolower((int32_t) ch) >= 'b' && tolower((int32_t) ch) <= 'z') {
     if ((ch <= 'Z' && (flags & BF_UPPER) > 0) || (ch > 'Z' && (flags & BF_UPPER) > 0)) {
       printf("[ERROR] character %c defined in -x although the whole letter range was already defined by '%c', ignored\n", ch, ch <= 'Z' ? 'A' : 'a');
       return 0;
     }
-    //printf("[WARNING] adding character %c for -x, note that '%c' will add all %scase letters\n", ch, ch <= 'Z' ? 'A' : 'a', ch <= 'Z' ? "up" : "low");
   }
   (*crs_len)++;
   if (BF_CHARSMAX - *crs_len < 1) {
@@ -48,9 +45,7 @@ static int32_t add_single_char(char ch, char flags, int32_t* crs_len) {
   return 0;
 }
 // return values : 0 on success, 1 on error
-//
 // note that we check for -x .:.:ab but not for -x .:.:ba
-//
 int32_t bf_init(char *arg) {
   int32_t i = 0;
   int32_t crs_len = 0;
@@ -172,7 +167,6 @@ int32_t bf_init(char *arg) {
   return 0;
 }
 
-
 uint64_t bf_get_pcount() {
   int32_t i;
   double count = 0;
@@ -188,7 +182,6 @@ uint64_t bf_get_pcount() {
   foo = count / 1;
   return foo;
 }
-
 
 char *bf_next() {
   int32_t i, pos = bf_options.current - 1;

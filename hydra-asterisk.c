@@ -1,8 +1,6 @@
-//This plugin was written by david@
-//
-//This plugin is written for Asterisk Call Manager
-//which is running by default on TCP/5038
-//
+/* This plugin was written by david@
+ * This plugin is written for Asterisk Call Manager
+ * which is running by default on TCP/5038 */
 
 #include "hydra-mod.h"
 
@@ -74,7 +72,6 @@ void service_asterisk(char *ip, int32_t sp, unsigned char options, char *miscptr
     case 1:                    /* connect and service init function */
       if (sock >= 0)
         sock = hydra_disconnect(sock);
-//      usleepn(300);
       if ((options & OPTION_SSL) == 0) {
         if (port != 0)
           myport = port;
@@ -93,9 +90,6 @@ void service_asterisk(char *ip, int32_t sp, unsigned char options, char *miscptr
         hydra_child_exit(1);
       }
       buf = hydra_receive_line(sock);
-      //fprintf(stderr, "%s\n",buf);
-      //banner should look like:
-      //Asterisk Call Manager/1.1
 
       if (buf == NULL || strstr(buf, "Asterisk Call Manager/") == NULL) {
         /* check the first line */

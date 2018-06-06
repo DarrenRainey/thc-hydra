@@ -1,8 +1,6 @@
 /* 2001 van Hauser for Hydra: commented out KnR Kn3 and Df_Key to remove
-   compiler warnings for unused definitions.
- */
-
-/*
+ *  compiler warnings for unused definitions.
+ *
  * This is D3DES (V5.09) by Richard Outerbridge with the double and
  * triple-length support removed for use in VNC.  Also the bytebit[] array
  * has been reversed so that the most significant bit in each byte of the
@@ -38,15 +36,6 @@ static void desfunc(unsigned long *, unsigned long *);
 static void cookey(unsigned long *);
 
 static unsigned long KnL[32] = { 0L };
-
-/* not needed ...
- static unsigned long KnR[32] = { 0L };
- static unsigned long Kn3[32] = { 0L };
- static unsigned char Df_Key[24] = {
-	0x01,0x23,0x45,0x67,0x89,0xab,0xcd,0xef,
-	0xfe,0xdc,0xba,0x98,0x76,0x54,0x32,0x10,
-	0x89,0xab,0xcd,0xef,0x01,0x23,0x45,0x67 };
-*/
 
 static unsigned short bytebit[8] = {
   01, 02, 04, 010, 020, 040, 0100, 0200

@@ -1,5 +1,4 @@
 /*
-
 Hydra Form Module
 -----------------
 
@@ -96,14 +95,10 @@ int32_t redirected_cpt = MAX_REDIRECT;
 
 char *cookie_request = NULL, *normal_request = NULL;  // Buffers for HTTP headers
 
-/*
- * Function to perform some initial setup.
- */
+/* Function to perform some initial setup. */
 ptr_header_node initialize(char *ip, unsigned char options, char *miscptr);
 
-/*
- * Returns 1 if specified header exists, or 0 otherwise.
- */
+/* Returns 1 if specified header exists, or 0 otherwise. */
 ptr_header_node header_exists(ptr_header_node * ptr_head, char *header_name, char type) {
   ptr_header_node cur_ptr = *ptr_head, found_header = NULL;
 
@@ -201,9 +196,9 @@ int32_t add_or_update_cookie(ptr_cookie_node * ptr_cookie, char *cookie_expr) {
     cookie_name = strndup(cookie_expr, cookie_value - cookie_expr);
     cookie_value = strdup(cookie_value + 1);
 
-    // we've got the cookie's name and value, now it's time to insert or update the list
+    /* we've got the cookie's name and value, now it's time to insert or update the list */
     if (*ptr_cookie == NULL) {
-      // no cookies
+      /* no cookies */
       append_cookie(cookie_name, cookie_value, ptr_cookie);
     } else {
       for (cur_ptr = *ptr_cookie; cur_ptr; cur_ptr = cur_ptr->next) {
@@ -262,7 +257,7 @@ int32_t add_header(ptr_header_node * ptr_head, char *header, char *value, char t
   ptr_header_node cur_ptr = NULL;
   ptr_header_node existing_hdr, new_ptr;
 
-  // get to the last header
+  /* get to the last header */
   for (cur_ptr = *ptr_head; cur_ptr && cur_ptr->next; cur_ptr = cur_ptr->next);
 
   char *new_header = strdup(header);
@@ -297,19 +292,19 @@ int32_t add_header(ptr_header_node * ptr_head, char *header, char *value, char t
       if (cur_ptr)
         cur_ptr->next = new_ptr;
       else {
-        // head is NULL, so the list is empty
+        /* head is NULL, so the list is empty */
         *ptr_head = new_ptr;
       }
     } else if ((type == HEADER_TYPE_DEFAULT_REPL || type == HEADER_TYPE_USERHEADER_REPL) && (existing_hdr = header_exists(ptr_head, new_header, HEADER_TYPE_DEFAULT)) != NULL) {
-      // It's a user-supplied header that must replace a default one
-      // Replace the default header's value with this new value
-      free(existing_hdr->value); // free old value
+      /* It's a user-supplied header that must replace a default one
+       * Replace the default header's value with this new value */
+      free(existing_hdr->value); /* free old value */
       existing_hdr->value = new_value;
       existing_hdr->type = type;
-      free(new_header); // we dont need this one anymore
+      free(new_header); /* we dont need this one anymore */
     }
   } else {
-    // we're out of memory, so forcefully end
+    /* we're out of memory, so forcefully end */
     free(new_header);
     free(new_value);
     return 0;
@@ -395,7 +390,6 @@ char *stringify_headers(ptr_header_node *ptr_head) {
 
   return headers_str;
 }
-
 
 char *prepare_http_request(char *type, char *path, char *params, char *headers) {
   uint32_t reqlen = 0;
